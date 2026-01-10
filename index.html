@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guia institucional sobre Comunicação de Notícias Difíceis na Saúde. Protocolos SPIKES, ética médica e humanização.">
+    <title>Comunicação Humanizada | Notícias Difíceis na Saúde</title>
+    
+    <!-- Tipografia Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIÁVEIS E RESET --- */
+        :root {
+            --primary-color: #2c3e50; /* Azul Escuro Institucional */
+            --secondary-color: #27ae60; /* Verde Saúde */
+            --accent-color: #2980b9; /* Azul Médio (Ajustado para melhor contraste) */
+            --text-color: #1a1a1a; /* Cinza Quase Preto (Melhor leitura) */
+            --bg-light: #f4f7f6;
+            --bg-white: #ffffff;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style-position: inside;
+        }
+
+        /* --- LAYOUT & HEADER --- */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span { color: var(--secondary-color); }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        /* Menu Mobile Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- SEÇÕES GERAIS --- */
+        main {
+            margin-top: var(--header-height);
+        }
+
+        section {
+            padding: 80px 5%;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--bg-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* --- HERO --- */
+        #inicio {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #inicio h1 { color: white; font-size: 3rem; }
+        #inicio p { font-size: 1.2rem; max-width: 800px; margin-top: 1rem; color: #f0f0f0; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            margin-top: 2rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn:hover { background-color: #219150; }
+
+        /* --- CARDS & GRIDS --- */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        /* --- CORREÇÃO NOS CARDS DE PROTOCOLO --- */
+        .protocol-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+        }
+        .protocol-header {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        /* AQUI ESTÁ A CORREÇÃO DE COR: */
+        .protocol-header h3 {
+            color: #ffffff !important; /* Força o texto branco sobre fundo escuro */
+            margin-bottom: 0;
+        }
+
+        .protocol-body {
+            padding: 1.5rem;
+        }
+
+        /* --- ACORDEÃO (FAQ e Detalhes) --- */
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+        }
+        .accordion-header {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            color: var(--primary-color);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 1rem;
+            color: #555;
+        }
+        .accordion-content.active {
+            padding-bottom: 1rem;
+        }
+
+        /* --- TABELA DE CASOS --- */
+        .case-study {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .case-study h4 { color: #856404; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        footer a { color: var(--secondary-color); }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 900px) {
+            .menu-toggle { display: block; color: var(--primary-color); }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 1rem 0;
+            }
+            nav ul.show { display: flex; }
+            nav ul li { text-align: center; padding: 10px 0; }
+            #inicio h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGAÇÃO -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-user-md"></i> Comuni<span>Care</span>
+        </div>
+        <div class="menu-toggle" aria-label="Abrir menu">&#9776;</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#conceito">Conceito</a></li>
+                <li><a href="#etica">Ética</a></li>
+                <li><a href="#protocolos">Protocolos</a></li>
+                <li><a href="#pratica">Na Prática</a></li>
+                <li><a href="#materiais">Materiais</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- INÍCIO -->
+        <section id="inicio">
+            <div class="container">
+                <h1>Comunicação de Notícias Difíceis</h1>
+                <p>Um guia para profissionais de saúde sobre como transformar momentos críticos em atos de cuidado, empatia e ética.</p>
+                <a href="#conceito" class="btn">Começar a Aprender</a>
+            </div>
+        </section>
+
+        <!-- CONCEITO E IMPORTÂNCIA -->
+        <section id="conceito">
+            <div class="container">
+                <h2 class="section-title">O Que é uma Notícia Difícil?</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Definição</h3>
+                        <p>Qualquer informação que altere drástica e negativamente a visão do paciente sobre o seu futuro. Não se limita apenas ao óbito ou câncer, mas inclui doenças crônicas, necessidade de cirurgias complexas ou mudanças no estilo de vida.</p>
+                    </div>
+                    <div class="card">
+                        <h3>O Impacto</h3>
+                        <p>Uma comunicação inadequada pode gerar traumas duradouros, luto patológico na família, desconfiança no sistema de saúde e processos ético-legais. A forma como a notícia é dada é tão importante quanto o tratamento clínico.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Objetivos</h3>
+                        <p>O objetivo não é tirar a dor da notícia, mas garantir que ela seja compreendida, que o paciente se sinta acolhido e que um plano de cuidados claro seja estabelecido.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FUNDAMENTOS ÉTICOS -->
+        <section id="etica">
+            <div class="container">
+                <h2 class="section-title">Fundamentos Éticos e Humanização</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem auto;">
+                    A comunicação em saúde deve ser pautada pelos princípios da Bioética: Beneficência, Não-Maleficência, Autonomia e Justiça.
+                </p>
+                
+                <div class="grid-3">
+                    <article>
+                        <h4><span style="color:var(--secondary-color)">✓</span> Verdade e Esperança</h4>
+                        <p>O paciente tem direito à verdade (autonomia), mas ela deve ser dosada (verdade suportável). Jamais destrua a esperança, mas reoriente-a (ex: esperança de cura → esperança de conforto e não sofrimento).</p>
+                    </article>
+                    <article>
+                        <h4><span style="color:var(--secondary-color)">✓</span> Comunicação Centrada na Pessoa</h4>
+                        <p>Entenda quem é o paciente, seus valores, crenças e o que ele deseja saber. Evite o "paternalismo médico" onde o profissional decide o que é melhor sem consultar o paciente.</p>
+                    </article>
+                    <article>
+                        <h4><span style="color:var(--secondary-color)">✓</span> Consentimento Informado</h4>
+                        <p>Para tomar decisões sobre seu tratamento, o paciente precisa compreender sua condição. A comunicação falha invalida o consentimento.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROTOCOLOS -->
+        <section id="protocolos">
+            <div class="container">
+                <h2 class="section-title">Protocolos e Modelos</h2>
+                <p style="margin-bottom: 2rem;">O modelo mais utilizado mundialmente é o <strong>SPIKES</strong>, desenvolvido para oncologia, mas aplicável a todas as áreas.</p>
+
+                <div class="grid-3">
+                    <!-- SPIKES CARD -->
+                    <div class="protocol-card">
+                        <div class="protocol-header"><h3>SPIKES</h3></div>
+                        <div class="protocol-body">
+                            <ul style="list-style: none;">
+                                <li><strong>S (Setting):</strong> Preparação do ambiente e do profissional.</li>
+                                <li><strong>P (Perception):</strong> O que o paciente já sabe?</li>
+                                <li><strong>I (Invitation):</strong> O quanto o paciente quer saber?</li>
+                                <li><strong>K (Knowledge):</strong> Transmissão da informação.</li>
+                                <li><strong>E (Empathy):</strong> Acolhimento das emoções.</li>
+                                <li><strong>S (Strategy):</strong> Resumo e plano terapêutico.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- OUTROS MODELOS -->
+                    <div class="protocol-card">
+                        <div class="protocol-header" style="background-color: var(--accent-color);"><h3>Outros Modelos</h3></div>
+                        <div class="protocol-body">
+                            <p><strong>ABCDE:</strong> Advanced preparation, Build relationship, Communicate well, Deal with reactions, Encourage emotion.</p>
+                            <hr style="margin: 10px 0;">
+                            <p><strong>BREAKS:</strong> Focado em situações de emergência ou tempo escasso.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMO COMUNICAR NA PRÁTICA -->
+        <section id="pratica">
+            <div class="container">
+                <h2 class="section-title">Como Comunicar na Prática</h2>
+                
+                <div class="accordion">
+                    <!-- Item 1 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            1. Preparação do Ambiente (Setting)
+                            <span>+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Garanta privacidade. Sente-se ao nível do paciente. Desligue o celular ou bip. Tenha lenços de papel disponíveis. Se possível, garanta que o paciente esteja acompanhado de alguém de confiança.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            2. Linguagem Verbal e Não-Verbal
+                            <span>+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p><strong>Evite jargões:</strong> Não diga "neoplasia com metástase", diga "um câncer que se espalhou".<br>
+                            <strong>Não Verbal:</strong> Mantenha contato visual, postura aberta, toque no braço ou mão (se culturalmente apropriado e aceito).</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            3. O Manejo do Silêncio (Nurse)
+                            <span>+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Após dar a má notícia ("Os exames confirmaram..."), <strong>faça silêncio</strong>. Deixe o paciente processar. O silêncio é uma ferramenta clínica. Não corra para preencher o vazio com explicações técnicas.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            4. O Que EVITAR dizer
+                            <span>+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <ul style="padding-left: 20px;">
+                                <li>"Eu sei como você se sente." (Você não sabe).</li>
+                                <li>"Não há mais nada a fazer." (Sempre há o que fazer: cuidar, aliviar a dor).</li>
+                                <li>"Seja forte." (Isso invalida a dor do paciente).</li>
+                                <li>"Foi a vontade de Deus." (Não imponha crenças).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SITUAÇÕES E CASOS CLÍNICOS -->
+        <section id="casos">
+            <div class="container">
+                <h2 class="section-title">Situações Clínicas e Exemplos</h2>
+                
+                <div class="case-study">
+                    <h4>Estudo de Caso 1: Diagnóstico de Câncer</h4>
+                    <p><strong>Situação:</strong> Paciente de 45 anos recebe diagnóstico de Ca de Pâncreas.</p>
+                    <p><strong>Erro Comum:</strong> "Olha, o exame deu ruim, é um tumor maligno agressivo. Vamos ter que operar logo."</p>
+                    <p><strong>Boa Prática (SPIKES):</strong> "Dona Maria, infelizmente o resultado da biópsia não foi o que esperávamos (Warning shot). O exame mostrou um câncer no pâncreas. (Pausa). Como a senhora está se sentindo com essa informação?"</p>
+                </div>
+
+                <div class="case-study" style="background-color: #d1ecf1; border-color: #17a2b8;">
+                    <h4 style="color: #0c5460;">Estudo de Caso 2: Óbito em Emergência</h4>
+                    <p><strong>Situação:</strong> Família aguarda fora da sala de reanimação.</p>
+                    <p><strong>Boa Prática:</strong> Levar a um local reservado. Identificar-se. "Fizemos tudo o que foi possível, realizamos todas as manobras de reanimação, mas infelizmente o coração dele não voltou a bater e ele faleceu." Seja direto e inequívoco (use a palavra "faleceu" ou "morreu", evite "foi descansar").</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MATERIAIS DE APOIO -->
+        <section id="materiais">
+            <div class="container">
+                <h2 class="section-title">Materiais de Apoio e Educação</h2>
+                <div class="grid-3">
+                    <div>
+                        <h3>Leitura Recomendada</h3>
+                        <ul style="list-style-type: circle; padding-left: 20px;">
+                            <li><a href="#" style="text-decoration: underline;">Manual de Cuidados Paliativos (ANCP)</a></li>
+                            <li><a href="#" style="text-decoration: underline;">Código de Ética Médica</a></li>
+                            <li><a href="#" style="text-decoration: underline;">Artigo: The SPIKES Protocol (Baile et al.)</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Para o Profissional</h3>
+                        <p>Lidar com más notícias gera desgaste. O <strong>Burnout</strong> é real. Busque grupos de Balint, debriefing com a equipe após casos difíceis e terapia pessoal.</p>
+                    </div>
+                    <div>
+                        <h3>FAQ</h3>
+                        <p><strong>P: Posso mentir para a família se eles pedirem para não contar ao paciente?</strong><br>
+                        R: No Brasil, o paciente tem direito à verdade. A "conspiração do silêncio" deve ser quebrada com delicadeza, trazendo a família para ser aliada, não barreira.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE / CONTATO -->
+        <section id="sobre" style="background-color: var(--primary-color); color: white;">
+            <div class="container" style="text-align: center;">
+                <h2>Sobre o Projeto</h2>
+                <p style="max-width: 600px; margin: 0 auto;">Este é um site educacional desenvolvido para fins acadêmicos e de suporte à prática clínica. O conteúdo é baseado em diretrizes internacionais, mas não substitui o julgamento clínico caso a caso.</p>
+                <br>
+                <p>Desenvolvido por Equipe de Tecnologia em Saúde &copy; 2024</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>ComuniCare - Educação em Saúde. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- JAVASCRIPT FUNCIONAL -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Menu Mobile Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('nav ul');
+            const navLinks = document.querySelectorAll('nav a');
+
+            menuToggle.addEventListener('click', () => {
+                navUl.classList.toggle('show');
+            });
+
+            // Fechar menu ao clicar em um link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navUl.classList.remove('show');
+                });
+            });
+
+            // 2. Acordeão Lógica
+            const accordions = document.querySelectorAll('.accordion-header');
+
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function() {
+                    // Toggle active class
+                    this.classList.toggle('active');
+                    
+                    // Toggle panel visibility
+                    const content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        content.classList.remove('active');
+                        this.querySelector('span').textContent = '+';
+                    } else {
+                        // Fecha outros (opcional, para comportamento "accordion" estrito)
+                        document.querySelectorAll('.accordion-content').forEach(c => {
+                            c.style.maxHeight = null;
+                            c.classList.remove('active');
+                        });
+                        document.querySelectorAll('.accordion-header span').forEach(s => s.textContent = '+');
+
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        content.classList.add('active');
+                        this.querySelector('span').textContent = '-';
+                    }
+                });
+            });
+
+            // 3. Highlight menu on scroll
+            window.addEventListener('scroll', () => {
+                let current = '';
+                const sections = document.querySelectorAll('section');
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href').includes(current)) {
+                        a.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
