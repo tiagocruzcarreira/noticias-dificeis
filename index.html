@@ -3,35 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Guia institucional sobre Comunicação de Notícias Difíceis na Saúde. Protocolos SPIKES, ética médica e humanização.">
-    <title>Comunicação Humanizada | Notícias Difíceis</title>
+    <meta name="description" content="Guia institucional sobre Comunicação de Notícias Difíceis na Saúde. Protocolos SPIKES, NURSE, ética médica e humanização.">
+    <title>Comunicação Humanizada | Notícias Difíceis na Saúde</title>
     
     <!-- Tipografia Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- VARIÁVEIS E RESET --- */
+        /* --- VARIÁVEIS DA NOVA PALETA ACOLHEDORA --- */
         :root {
-            --primary-color: #2c3e50; /* Azul Escuro Institucional */
-            --secondary-color: #27ae60; /* Verde Saúde */
-            --accent-color: #2980b9; /* Azul Médio (Ajustado para melhor contraste) */
-            --text-color: #1a1a1a; /* Cinza Quase Preto (Melhor leitura) */
-            --bg-light: #f4f7f6;
+            --primary-color: #8C4B31; /* Terracota Quente (Acolhimento/Segurança) */
+            --secondary-color: #D37856; /* Laranja Pêssego (Empatia/Cuidado) */
+            --accent-color: #E3B089; /* Areia Quente / Bege (Luz) */
+            --text-color: #4A3E39; /* Marrom acinzentado escuro (Mais suave que preto puro) */
+            --bg-light: #FAF7F5; /* Off-white super quente e leve */
             --bg-white: #ffffff;
-            --header-height: 70px;
+            --alert-color: #B53A27; /* Vermelho queimado para alertas */
+            --header-height: 75px;
+            --progress-height: 5px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Lato', sans-serif;
@@ -40,261 +38,147 @@
             background-color: var(--bg-light);
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--primary-color); margin-bottom: 1rem; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style-position: inside; }
+
+        /* --- BARRA DE PROGRESSO NO TOPO --- */
+        .progress-container {
+            width: 100%; height: var(--progress-height);
+            background: #f0e9e4;
+            position: fixed; top: 0; z-index: 1002;
+        }
+        .progress-bar {
+            height: var(--progress-height);
+            background: var(--secondary-color);
+            width: 0%;
+            border-top-right-radius: 3px; border-bottom-right-radius: 3px;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style-position: inside;
-        }
-
-        /* --- LAYOUT & HEADER --- */
+        /* --- HEADER --- */
         header {
             background-color: var(--bg-white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(140, 75, 49, 0.08); /* Sombra em tom quente */
+            position: fixed; width: 100%; top: var(--progress-height); z-index: 1000;
             height: var(--header-height);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
+            display: flex; align-items: center; justify-content: space-between; padding: 0 5%;
         }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
+        .logo { font-weight: 700; font-size: 1.2rem; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
         .logo span { color: var(--secondary-color); }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav a { font-size: 0.95rem; font-weight: 600; padding: 5px 0; transition: color 0.3s; color: var(--text-color); }
+        nav a:hover, nav a.active { color: var(--secondary-color); border-bottom: 3px solid var(--secondary-color); }
 
-        nav a {
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--secondary-color);
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        /* Menu Mobile Toggle */
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary-color); }
 
         /* --- SEÇÕES GERAIS --- */
-        main {
-            margin-top: var(--header-height);
-        }
+        main { margin-top: calc(var(--header-height) + var(--progress-height)); }
+        section { padding: 90px 5%; border-bottom: 1px solid #efeae6; }
+        section:nth-child(even) { background-color: var(--bg-white); }
+        .container { max-width: 1200px; margin: 0 auto; }
 
-        section {
-            padding: 80px 5%;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        section:nth-child(even) {
-            background-color: var(--bg-white);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 3.5rem; position: relative; }
         .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--secondary-color);
-            margin: 10px auto;
-            border-radius: 2px;
+            content: ''; display: block; width: 60px; height: 5px;
+            background-color: var(--secondary-color); margin: 15px auto; border-radius: 3px;
         }
 
         /* --- HERO --- */
         #inicio {
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 150px 5%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(rgba(140, 75, 49, 0.85), rgba(74, 62, 57, 0.85)), url('https://images.unsplash.com/photo-1576091160550-2173ff9e5ee5?auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; background-position: center; color: white; text-align: center;
+            padding: 160px 5%; display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
-
-        #inicio h1 { color: white; font-size: 3rem; }
-        #inicio p { font-size: 1.2rem; max-width: 800px; margin-top: 1rem; color: #f0f0f0; }
+        #inicio h1 { color: white; font-size: 3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        #inicio p { font-size: 1.2rem; max-width: 800px; margin-top: 1rem; color: #fdfdfd; }
 
         .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            margin-top: 2rem;
-            font-weight: bold;
-            transition: background 0.3s;
+            display: inline-block; background-color: var(--secondary-color); color: white;
+            padding: 14px 35px; border-radius: 30px; margin-top: 2.5rem; font-weight: bold; 
+            transition: all 0.3s; box-shadow: 0 4px 10px rgba(211, 120, 86, 0.3); font-size: 1.1rem;
         }
-        .btn:hover { background-color: #219150; }
+        .btn:hover { background-color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 6px 15px rgba(140, 75, 49, 0.4); }
 
-        /* --- CARDS & GRIDS --- */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--secondary-color);
-        }
-
-        /* --- CORREÇÃO NOS CARDS DE PROTOCOLO --- */
-        .protocol-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: white;
-        }
-        .protocol-header {
-            background-color: var(--primary-color);
-            padding: 1rem;
-            text-align: center;
-        }
+        /* --- GRIDS E IMAGENS --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         
-        /* AQUI ESTÁ A CORREÇÃO DE COR: */
-        .protocol-header h3 {
-            color: #ffffff !important; /* Força o texto branco sobre fundo escuro */
-            margin-bottom: 0;
+        .card {
+            background: var(--bg-white); padding: 2.5rem 2rem; border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); border-top: 5px solid var(--secondary-color);
+            transition: transform 0.3s;
         }
+        .card:hover { transform: translateY(-5px); }
 
-        .protocol-body {
-            padding: 1.5rem;
-        }
+        .img-wrapper { border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(140, 75, 49, 0.15); position: relative; }
+        .img-wrapper img { width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.5s; }
+        .img-wrapper:hover img { transform: scale(1.05); }
 
-        /* --- ACORDEÃO (FAQ e Detalhes) --- */
-        .accordion {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .accordion-item {
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 1rem;
-        }
+        /* --- ACORDEÃO (FAQ, Protocolos e Situações) --- */
+        .accordion { width: 100%; }
+        .accordion-item { border: 1px solid #ebdjd8; border-radius: 8px; margin-bottom: 1rem; background-color: var(--bg-white); overflow: hidden;}
         .accordion-header {
-            background: none;
-            border: none;
-            width: 100%;
-            text-align: left;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            color: var(--primary-color);
+            background: var(--bg-white); border: none; width: 100%; text-align: left; padding: 1.2rem 1.5rem;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between;
+            color: var(--primary-color); transition: background 0.3s;
         }
+        .accordion-header:hover { background-color: #fcf4f0; }
         .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding: 0 1rem;
-            color: #555;
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
+            padding: 0 1.5rem; color: var(--text-color);
         }
-        .accordion-content.active {
-            padding-bottom: 1rem;
-        }
+        .accordion-content.active { padding-bottom: 1.5rem; }
+        
+        .phrase-box { background-color: #fcece3; padding: 12px 15px; border-left: 4px solid var(--secondary-color); margin: 12px 0; font-style: italic; border-radius: 0 8px 8px 0;}
 
-        /* --- TABELA DE CASOS --- */
-        .case-study {
-            background-color: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        /* --- BOTÃO VOLTAR AO TOPO --- */
+        #btnTop {
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99;
+            font-size: 1.2rem; border: none; outline: none; background-color: var(--primary-color);
+            color: white; cursor: pointer; padding: 15px 18px; border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(140, 75, 49, 0.4); transition: 0.3s;
         }
-        .case-study h4 { color: #856404; }
+        #btnTop:hover { background-color: var(--secondary-color); transform: translateY(-3px); }
 
         /* --- FOOTER --- */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 3rem 5%;
-            text-align: center;
-        }
-        footer a { color: var(--secondary-color); }
+        footer { background-color: var(--primary-color); color: white; padding: 3rem 5%; text-align: center; }
 
         /* --- RESPONSIVIDADE --- */
         @media (max-width: 900px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
             .menu-toggle { display: block; color: var(--primary-color); }
             nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: var(--header-height);
-                left: 0;
-                width: 100%;
-                background: white;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-                padding: 1rem 0;
+                display: none; flex-direction: column; position: absolute; top: var(--header-height);
+                left: 0; width: 100%; background: var(--bg-white); box-shadow: 0 5px 10px rgba(0,0,0,0.1); padding: 1rem 0;
             }
             nav ul.show { display: flex; }
-            nav ul li { text-align: center; padding: 10px 0; }
-            #inicio h1 { font-size: 2rem; }
+            nav ul li { text-align: center; padding: 15px 0; border-bottom: 1px solid #efeae6;}
+            #inicio h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- BARRA DE PROGRESSO -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
     <!-- NAVEGAÇÃO -->
     <header>
         <div class="logo">
-            <i class="fas fa-user-md"></i> Comunicação<span>Humanizada</span>
+            <i class="fas fa-hands-holding-circle"></i> Comunicação<span>Humanizada</span>
         </div>
-        <div class="menu-toggle" aria-label="Abrir menu">&#9776;</div>
+        <div class="menu-toggle" aria-label="Abrir menu"><i class="fas fa-bars"></i></div>
         <nav>
             <ul>
                 <li><a href="#inicio">Início</a></li>
-                <li><a href="#conceito">Conceito</a></li>
-                <li><a href="#etica">Ética</a></li>
+                <li><a href="#etica">Ética & Leis</a></li>
                 <li><a href="#protocolos">Protocolos</a></li>
-                <li><a href="#pratica">Na Prática</a></li>
-                <li><a href="#materiais">Materiais</a></li>
+                <li><a href="#casos">Situações Clínicas</a></li>
+                <li><a href="#autocuidado">Autocuidado</a></li>
             </ul>
         </nav>
     </header>
@@ -304,144 +188,108 @@
         <section id="inicio">
             <div class="container">
                 <h1>Comunicação de Notícias Difíceis</h1>
-                <p>Um guia para profissionais de saúde sobre como transformar momentos críticos em atos de cuidado, empatia e ética.</p>
-                <a href="#conceito" class="btn">Começar a Aprender</a>
+                <p>Guia integral para a Prática Interprofissional no Brasil. Evidências científicas e diretrizes ético-legais para suporte ao paciente e preservação do trabalhador.</p>
+                <a href="#etica" class="btn">Explorar o Conteúdo</a>
             </div>
         </section>
 
-        <!-- CONCEITO E IMPORTÂNCIA -->
-        <section id="conceito">
-            <div class="container">
-                <h2 class="section-title">O Que é uma Notícia Difícil?</h2>
-                <div class="grid-3">
-                    <div class="card">
-                        <h3>Definição</h3>
-                        <p>Qualquer informação que altere drástica e negativamente a visão do paciente sobre o seu futuro. Não se limita apenas ao óbito ou câncer, mas inclui doenças crônicas, necessidade de cirurgias complexas ou mudanças no estilo de vida.</p>
-                    </div>
-                    <div class="card">
-                        <h3>O Impacto</h3>
-                        <p>Uma comunicação inadequada pode gerar traumas duradouros, luto patológico na família, desconfiança no sistema de saúde e processos ético-legais. A forma como a notícia é dada é tão importante quanto o tratamento clínico.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Objetivos</h3>
-                        <p>O objetivo não é tirar a dor da notícia, mas garantir que ela seja compreendida, que o paciente se sinta acolhido e que um plano de cuidados claro seja estabelecido.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FUNDAMENTOS ÉTICOS -->
+        <!-- ÉTICA E LEGISLAÇÃO BRASILEIRA -->
         <section id="etica">
             <div class="container">
-                <h2 class="section-title">Fundamentos Éticos e Humanização</h2>
-                <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem auto;">
-                    A comunicação em saúde deve ser pautada pelos princípios da Bioética: Beneficência, Não-Maleficência, Autonomia e Justiça.
-                </p>
+                <h2 class="section-title">Moldura Ética e Legal no Brasil</h2>
                 
-                <div class="grid-3">
-                    <article>
-                        <h4><span style="color:var(--secondary-color)">✓</span> Verdade e Esperança</h4>
-                        <p>O paciente tem direito à verdade (autonomia), mas ela deve ser dosada (verdade suportável). Jamais destrua a esperança, mas reoriente-a (ex: esperança de cura → esperança de conforto e não sofrimento).</p>
-                    </article>
-                    <article>
-                        <h4><span style="color:var(--secondary-color)">✓</span> Comunicação Centrada na Pessoa</h4>
-                        <p>Entenda quem é o paciente, seus valores, crenças e o que ele deseja saber. Evite o "paternalismo médico" onde o profissional decide o que é melhor sem consultar o paciente.</p>
-                    </article>
-                    <article>
-                        <h4><span style="color:var(--secondary-color)">✓</span> Consentimento Informado</h4>
-                        <p>Para tomar decisões sobre seu tratamento, o paciente precisa compreender sua condição. A comunicação falha invalida o consentimento.</p>
-                    </article>
+                <div class="grid-2">
+                    <div>
+                        <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                            A comunicação em saúde é balizada por normas que protegem tanto o paciente quanto o profissional, garantindo assistência segura e humanizada no SUS.
+                        </p>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 1rem;">
+                                <i class="fas fa-scale-balanced" style="color:var(--secondary-color); margin-right: 10px; font-size: 1.2rem;"></i> <strong>CFM 1.805/2006 (Ortotanásia):</strong> Permite limitar procedimentos que prolonguem artificialmente a vida, garantindo cuidados paliativos.
+                            </li>
+                            <li style="margin-bottom: 1rem;">
+                                <i class="fas fa-user-nurse" style="color:var(--secondary-color); margin-right: 10px; font-size: 1.2rem;"></i> <strong>COFEN 564/2017:</strong> Reforça o enfermeiro como mediador essencial, garantindo suporte contínuo pós-notícia.
+                            </li>
+                            <li style="margin-bottom: 1rem;">
+                                <i class="fas fa-people-arrows" style="color:var(--secondary-color); margin-right: 10px; font-size: 1.2rem;"></i> <strong>HumanizaSUS:</strong> Reduz relações de poder. O paciente é sujeito na construção de Projetos Terapêuticos Singulares.
+                            </li>
+                            <li style="margin-bottom: 1rem;">
+                                <i class="fas fa-heart-pulse" style="color:var(--secondary-color); margin-right: 10px; font-size: 1.2rem;"></i> <strong>Diretrizes ANCP:</strong> Comunicação como intervenção terapêutica. Trata o sofrimento psicológico com o rigor da dor física.
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="img-wrapper">
+                        <!-- Imagem Acolhedora (Profissional confortando paciente) -->
+                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80" alt="Mãos dadas representando cuidado e humanização na saúde">
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROTOCOLOS -->
+        <!-- PROTOCOLOS AVANÇADOS -->
         <section id="protocolos">
             <div class="container">
-                <h2 class="section-title">Protocolos e Modelos</h2>
-                <p style="margin-bottom: 2rem;">O modelo mais utilizado mundialmente é o <strong>SPIKES</strong>, desenvolvido para oncologia, mas aplicável a todas as áreas.</p>
+                <h2 class="section-title">Protocolos Clínicos de Comunicação</h2>
+                <p style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    A utilização sistemática de protocolos reduz o nível de cortisol do paciente, promove o acolhimento e facilita a assimilação do plano terapêutico.
+                </p>
 
-                <div class="grid-3">
-                    <!-- SPIKES CARD -->
-                    <div class="protocol-card">
-                        <div class="protocol-header"><h3>SPIKES</h3></div>
-                        <div class="protocol-body">
-                            <ul style="list-style: none;">
-                                <li><strong>S (Setting):</strong> Preparação do ambiente e do profissional.</li>
-                                <li><strong>P (Perception):</strong> O que o paciente já sabe?</li>
-                                <li><strong>I (Invitation):</strong> O quanto o paciente quer saber?</li>
-                                <li><strong>K (Knowledge):</strong> Transmissão da informação.</li>
+                <div class="accordion" style="max-width: 900px; margin: 0 auto;">
+                    <!-- SPIKES -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">1. Protocolo SPIKES (O Padrão-Ouro) <i class="fas fa-chevron-down"></i></button>
+                        <div class="accordion-content">
+                            <ul style="margin-top: 15px; padding-left: 20px;">
+                                <li><strong>S (Setting):</strong> Preparação do ambiente e do profissional. Desligue eletrônicos, sente-se.</li>
+                                <li><strong>P (Perception):</strong> O que o paciente já sabe sobre sua condição?</li>
+                                <li><strong>I (Invitation):</strong> O quanto o paciente quer saber? Convite à informação.</li>
+                                <li><strong>K (Knowledge):</strong> Transmissão da informação. "Tiro de alerta" sem jargões.</li>
                                 <li><strong>E (Empathy):</strong> Acolhimento das emoções.</li>
                                 <li><strong>S (Strategy):</strong> Resumo e plano terapêutico.</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- OUTROS MODELOS -->
-                    <div class="protocol-card">
-                        <div class="protocol-header" style="background-color: var(--accent-color);"><h3>Outros Modelos</h3></div>
-                        <div class="protocol-body">
-                            <p><strong>ABCDE:</strong> Advanced preparation, Build relationship, Communicate well, Deal with reactions, Encourage emotion.</p>
-                            <hr style="margin: 10px 0;">
-                            <p><strong>BREAKS:</strong> Focado em situações de emergência ou tempo escasso.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- COMO COMUNICAR NA PRÁTICA -->
-        <section id="pratica">
-            <div class="container">
-                <h2 class="section-title">Como Comunicar na Prática</h2>
-                
-                <div class="accordion">
-                    <!-- Item 1 -->
+                    <!-- NURSE -->
                     <div class="accordion-item">
-                        <button class="accordion-header">
-                            1. Preparação do Ambiente (Setting)
-                            <span>+</span>
-                        </button>
+                        <button class="accordion-header">2. Protocolo NURSE (A Arte da Resposta Empática) <i class="fas fa-chevron-down"></i></button>
                         <div class="accordion-content">
-                            <p>Garanta privacidade. Sente-se ao nível do paciente. Desligue o celular ou bip. Tenha lenços de papel disponíveis. Se possível, garanta que o paciente esteja acompanhado de alguém de confiança.</p>
+                            <p style="margin-top: 15px; margin-bottom: 10px;">Foca na micro-habilidade da empatia, auxiliando na resposta às manifestações emocionais:</p>
+                            <div class="phrase-box"><strong>N (Name / Nomear):</strong> "Percebo que o senhor parece muito frustrado com o que discutimos."</div>
+                            <div class="phrase-box"><strong>U (Understand / Compreender):</strong> "É perfeitamente compreensível que se sinta assim. Posso imaginar o quanto é difícil."</div>
+                            <div class="phrase-box"><strong>R (Respect / Respeitar):</strong> "Admiro muito a força que você tem demonstrado em todo esse processo."</div>
+                            <div class="phrase-box"><strong>S (Support / Suportar):</strong> "Não deixaremos você sozinho; nossa equipe estará aqui em cada etapa."</div>
+                            <div class="phrase-box"><strong>E (Explore / Explorar):</strong> "O que mais te preocupa nesse momento específico?"</div>
                         </div>
                     </div>
 
-                    <!-- Item 2 -->
+                    <!-- BREAKS -->
                     <div class="accordion-item">
-                        <button class="accordion-header">
-                            2. Linguagem Verbal e Não-Verbal
-                            <span>+</span>
-                        </button>
+                        <button class="accordion-header">3. Protocolo BREAKS (Abordagem Sistêmica) <i class="fas fa-chevron-down"></i></button>
                         <div class="accordion-content">
-                            <p><strong>Evite jargões:</strong> Não diga "neoplasia com metástase", diga "um câncer que se espalhou".<br>
-                            <strong>Não Verbal:</strong> Mantenha contato visual, postura aberta, toque no braço ou mão (se culturalmente apropriado e aceito).</p>
+                            <ul style="margin-top: 15px; padding-left: 20px;">
+                                <li><strong>B (Background):</strong> Revisão exaustiva do histórico clínico antes de falar com o paciente.</li>
+                                <li><strong>R (Rapport):</strong> Estabelecimento de conexão, privacidade e escuta ativa.</li>
+                                <li><strong>E (Explore):</strong> Investigar a "verdade" que o paciente já construiu em sua mente.</li>
+                                <li><strong>A (Announce):</strong> Entrega da notícia com "tiro de alerta".</li>
+                                <li><strong>K (Kindling):</strong> Manejo da reação/emoção emergente. Permitir o silêncio e o choro.</li>
+                                <li><strong>S (Summarize):</strong> Resumir e agendar acompanhamento imediato.</li>
+                            </ul>
                         </div>
                     </div>
 
-                    <!-- Item 3 -->
+                    <!-- CLASS e VitalTalk -->
                     <div class="accordion-item">
-                        <button class="accordion-header">
-                            3. O Manejo do Silêncio (Nurse)
-                            <span>+</span>
-                        </button>
+                        <button class="accordion-header">4. VitalTalk e Modelo CLASS <i class="fas fa-chevron-down"></i></button>
                         <div class="accordion-content">
-                            <p>Após dar a má notícia ("Os exames confirmaram..."), <strong>faça silêncio</strong>. Deixe o paciente processar. O silêncio é uma ferramenta clínica. Não corra para preencher o vazio com explicações técnicas.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Item 4 -->
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            4. O Que EVITAR dizer
-                            <span>+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <ul style="padding-left: 20px;">
-                                <li>"Eu sei como você se sente." (Você não sabe).</li>
-                                <li>"Não há mais nada a fazer." (Sempre há o que fazer: cuidar, aliviar a dor).</li>
-                                <li>"Seja forte." (Isso invalida a dor do paciente).</li>
-                                <li>"Foi a vontade de Deus." (Não imponha crenças).</li>
+                            <p style="margin-top: 15px;">O <strong>VitalTalk</strong> foca em gerenciar conversas complexas sobre prognóstico. Usa ativamente a técnica <em>Ask-Tell-Ask</em> (Pergunte o que sabe, Dê a informação, Pergunte o que entendeu).</p>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li><strong>C (Context):</strong> Preparação física e emocional.</li>
+                                <li><strong>L (Listening):</strong> Escuta ativa.</li>
+                                <li><strong>A (Acknowledgment):</strong> Reconhecimento emocional e conexão.</li>
+                                <li><strong>S (Strategy):</strong> Estratégia alinhada aos valores do indivíduo.</li>
+                                <li><strong>S (Summary):</strong> Resumo compreensível.</li>
                             </ul>
                         </div>
                     </div>
@@ -449,139 +297,206 @@
             </div>
         </section>
 
-        <!-- SITUAÇÕES E CASOS CLÍNICOS -->
+        <!-- SITUAÇÕES CLÍNICAS -->
         <section id="casos">
             <div class="container">
-                <h2 class="section-title">Situações Clínicas e Exemplos</h2>
+                <h2 class="section-title">Situações Clínicas Específicas</h2>
                 
-                <div class="case-study">
-                    <h4>Estudo de Caso 1: Diagnóstico de Câncer</h4>
-                    <p><strong>Situação:</strong> Paciente de 45 anos recebe diagnóstico de Ca de Pâncreas.</p>
-                    <p><strong>Erro Comum:</strong> "Olha, o exame deu ruim, é um tumor maligno agressivo. Vamos ter que operar logo."</p>
-                    <p><strong>Boa Prática (SPIKES):</strong> "Dona Maria, infelizmente o resultado da biópsia não foi o que esperávamos (Warning shot). O exame mostrou um câncer no pâncreas. (Pausa). Como a senhora está se sentindo com essa informação?"</p>
-                </div>
+                <div class="grid-2">
+                    <div class="img-wrapper">
+                        <!-- Imagem Acolhedora (Apoio entre duas pessoas / Conversa empática) -->
+                        <img src="https://images.unsplash.com/photo-1527613426400-9ce99653c8e4?auto=format&fit=crop&w=800&q=80" alt="Profissional ouvindo atentamente o paciente">
+                    </div>
 
-                <div class="case-study" style="background-color: #d1ecf1; border-color: #17a2b8;">
-                    <h4 style="color: #0c5460;">Estudo de Caso 2: Óbito em Emergência</h4>
-                    <p><strong>Situação:</strong> Família aguarda fora da sala de reanimação.</p>
-                    <p><strong>Boa Prática:</strong> Levar a um local reservado. Identificar-se. "Fizemos tudo o que foi possível, realizamos todas as manobras de reanimação, mas infelizmente o coração dele não voltou a bater e ele faleceu." Seja direto e inequívoco (use a palavra "faleceu" ou "morreu", evite "foi descansar").</p>
+                    <div class="accordion">
+                        <!-- HIV / AIDS -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">Diagnóstico de HIV/AIDS <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <ul style="margin-top: 10px; padding-left: 20px;">
+                                    <li><strong>Sigilo e Estigma:</strong> Reforçar caráter confidencial. Evitar termos como "sentença de morte", focando em "condição crônica controlável".</li>
+                                    <li><strong>Educação:</strong> Explicar diferença entre HIV e AIDS e o conceito de carga viral indetectável (I=I).</li>
+                                    <li><strong>Suporte:</strong> O SUS oferece TARV universal, permitindo vida plena e produtiva.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Malformação Fetal -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">Malformação Fetal e Perda <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <p style="margin-top: 10px;">Comunica a perda do "filho idealizado". Exige equipe interdisciplinar. Adaptar o SPIKES para medicina perinatal. Discutir opções de suporte a cuidados paliativos perinatais para malformações incompatíveis com a vida. Respeitar e validar o luto antecipado.</p>
+                            </div>
+                        </div>
+
+                        <!-- Morte Encefálica -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">Morte Encefálica e Doação de Órgãos <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <p style="margin-top: 10px;"><strong>Comunicação Desacoplada:</strong> A informação do óbito (M.E.) deve ser separada da entrevista sobre doação. Evite termos como "coma profundo", seja claro: "o paciente morreu". Somente após a família compreender o óbito (o coração batendo gera ilusão), aciona-se a equipe de transplantes.</p>
+                            </div>
+                        </div>
+
+                        <!-- Pediatria -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">Pediatria: Crianças e Pais <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <ul style="margin-top: 10px; padding-left: 20px;">
+                                    <li><strong>Autonomia:</strong> A criança deve ser informada de acordo com sua idade. Honestidade evita perda irreversível de confiança.</li>
+                                    <li><strong>Parceria:</strong> Reconhecer o saber dos pais e incluí-los como ativos no cuidado.</li>
+                                    <li><strong>Ambiente:</strong> Evitar dar notícias em corredores.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Inclusiva -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">Deficiência Intelectual e Demência <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <p style="margin-top: 10px;">Combater o capacitismo e a infantilização. A Lei Brasileira de Inclusão garante a tomada de decisão apoiada. É vital o uso de Tecnologias Assistivas (CAA) como pranchas de imagens ou tablets para pacientes com dificuldades cognitivas ou não oralizados.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disclosure -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">Disclosure: Erros Assistenciais <i class="fas fa-chevron-down"></i></button>
+                            <div class="accordion-content">
+                                <p style="margin-top: 10px;"><em>Disclosure</em> é a revelação honesta de um erro. A comunicação aberta reduz conflitos judiciais pela percepção de transparência. Passos essenciais: Reconhecer o fato, pedir desculpas sinceras, explicar o porquê ocorreu e informar as medidas tomadas para correção e prevenção.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- MATERIAIS DE APOIO -->
-        <section id="materiais">
+        <!-- AUTOCUIDADO E SAÚDE MENTAL -->
+        <section id="autocuidado">
             <div class="container">
-                <h2 class="section-title">Materiais de Apoio e Educação</h2>
+                <h2 class="section-title">O Cuidar de Quem Cuida (Saúde Mental)</h2>
+                <p style="text-align: center; margin-bottom: 3rem;">A preservação da saúde mental do trabalhador de saúde é uma responsabilidade ético-institucional.</p>
+
                 <div class="grid-3">
-                    <div>
-                        <h3>Leitura Recomendada</h3>
-                        <ul style="list-style-type: circle; padding-left: 20px;">
-                            <li><a href="#" style="text-decoration: underline;">Manual de Cuidados Paliativos (ANCP)</a></li>
-                            <li><a href="#" style="text-decoration: underline;">Código de Ética Médica</a></li>
-                            <li><a href="#" style="text-decoration: underline;">Artigo: The SPIKES Protocol (Baile et al.)</a></li>
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-battery-quarter" style="font-size: 3rem; color: var(--alert-color); margin-bottom: 1rem;"></i>
+                        <h4 style="color: var(--alert-color);">Síndrome de Burnout</h4>
+                        <p style="text-align: left; font-size: 0.95rem;">Esgotamento crônico da empatia e adoecimento. É caracterizado por:</p>
+                        <ul style="text-align: left; font-size: 0.9rem; margin-top:10px; padding-left: 15px;">
+                            <li><strong>Exaustão Emocional:</strong> Cansaço extremo.</li>
+                            <li><strong>Despersonalização:</strong> Cinismo e tratamento mecanizado do paciente.</li>
+                            <li><strong>Baixa Realização:</strong> Inutilidade no trabalho.</li>
                         </ul>
                     </div>
-                    <div>
-                        <h3>Para o Profissional</h3>
-                        <p>Lidar com más notícias gera desgaste. O <strong>Burnout</strong> é real. Busque grupos de Balint, debriefing com a equipe após casos difíceis e terapia pessoal.</p>
+
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-people-arrows" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                        <h4>Grupos Balint</h4>
+                        <p style="font-size: 0.95rem;">Reuniões de profissionais focadas na análise da <strong>relação e sentimentos despertados</strong> no cuidado. Compartilhar vulnerabilidades com pares reduz o burnout e resgata a dimensão humana do profissional, mostrando que ele não está sozinho.</p>
                     </div>
-                    <div>
-                        <h3>FAQ</h3>
-                        <p><strong>P: Posso mentir para a família se eles pedirem para não contar ao paciente?</strong><br>
-                        R: No Brasil, o paciente tem direito à verdade. A "conspiração do silêncio" deve ser quebrada com delicadeza, trazendo a família para ser aliada, não barreira.</p>
+
+                    <div class="card" style="text-align: center;">
+                        <i class="fas fa-comments-medical" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+                        <h4>Debriefing de Equipe</h4>
+                        <p style="font-size: 0.95rem;">Reflexão rápida e estruturada pós-evento crítico (ex: modelos como o <strong>STOP 5</strong>). Serve para identificar falhas, reforçar ações corretas e, sobretudo, fornecer suporte emocional imediato à equipe, prevenindo o acúmulo de traumas vicários.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SOBRE / CONTATO -->
-        <section id="sobre" style="background-color: var(--primary-color); color: white;">
+        <section id="sobre" style="background-color: var(--primary-color); color: white; padding: 60px 5%;">
             <div class="container" style="text-align: center;">
                 <h2>Sobre o Projeto</h2>
-                <p style="max-width: 600px; margin: 0 auto;">Este é um site educacional desenvolvido para fins acadêmicos e de suporte à prática clínica. O conteúdo é baseado em diretrizes internacionais, mas não substitui o julgamento clínico caso a caso.</p>
+                <p style="max-width: 700px; margin: 0 auto;">Guia educacional desenvolvido para o Hospital Universitário Júlio Müller (HUJM/UFMT) e rede EBSERH. Baseado em diretrizes internacionais e na legislação do SUS para promover práticas interdisciplinares de alta performance e suporte humano.</p>
                 <br>
-                <p>Desenvolvido para o PIC - EBSERH &copy; 2025</p>
+                <p style="opacity: 0.8; font-size: 0.9rem;">Desenvolvido para o PIT/EBSERH &copy; 2026</p>
             </div>
         </section>
     </main>
 
+    <!-- BOTAO VOLTAR AO TOPO -->
+    <button id="btnTop" title="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+
     <footer>
-        <p>Educação em Saúde. Todos os direitos reservados.</p>
+        <p>Comunicação Humanizada na Saúde. Cuidando de pacientes e profissionais.</p>
     </footer>
 
     <!-- JAVASCRIPT FUNCIONAL -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 1. Menu Mobile Toggle
+            // 1. Barra de Progresso no Scroll
+            window.onscroll = function() {
+                let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                let scrolled = (winScroll / height) * 100;
+                document.getElementById("myBar").style.width = scrolled + "%";
+
+                // Lógica do botão Voltar ao Topo
+                const btnTop = document.getElementById("btnTop");
+                if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                    btnTop.style.display = "block";
+                } else {
+                    btnTop.style.display = "none";
+                }
+            };
+
+            // 2. Menu Mobile Toggle
             const menuToggle = document.querySelector('.menu-toggle');
             const navUl = document.querySelector('nav ul');
             const navLinks = document.querySelectorAll('nav a');
 
-            menuToggle.addEventListener('click', () => {
-                navUl.classList.toggle('show');
-            });
+            menuToggle.addEventListener('click', () => { navUl.classList.toggle('show'); });
+            navLinks.forEach(link => { link.addEventListener('click', () => { navUl.classList.remove('show'); }); });
 
-            // Fechar menu ao clicar em um link
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    navUl.classList.remove('show');
-                });
-            });
-
-            // 2. Acordeão Lógica
+            // 3. Acordeão Dinâmico
             const accordions = document.querySelectorAll('.accordion-header');
 
             accordions.forEach(acc => {
                 acc.addEventListener('click', function() {
-                    // Toggle active class
                     this.classList.toggle('active');
-                    
-                    // Toggle panel visibility
                     const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
                     if (content.style.maxHeight) {
                         content.style.maxHeight = null;
                         content.classList.remove('active');
-                        this.querySelector('span').textContent = '+';
+                        icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
                     } else {
-                        // Fecha outros (opcional, para comportamento "accordion" estrito)
-                        document.querySelectorAll('.accordion-content').forEach(c => {
-                            c.style.maxHeight = null;
-                            c.classList.remove('active');
+                        // Fecha os outros itens no mesmo grupo
+                        const parent = this.closest('.accordion');
+                        parent.querySelectorAll('.accordion-content').forEach(c => {
+                            c.style.maxHeight = null; c.classList.remove('active');
                         });
-                        document.querySelectorAll('.accordion-header span').forEach(s => s.textContent = '+');
+                        parent.querySelectorAll('.accordion-header i').forEach(i => {
+                            i.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                        });
 
                         content.style.maxHeight = content.scrollHeight + "px";
                         content.classList.add('active');
-                        this.querySelector('span').textContent = '-';
+                        icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
                     }
                 });
             });
 
-            // 3. Highlight menu on scroll
+            // 4. Highlight menu no Scroll (ScrollSpy)
             window.addEventListener('scroll', () => {
                 let current = '';
                 const sections = document.querySelectorAll('section');
-                
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (pageYOffset >= (sectionTop - 150)) {
-                        current = section.getAttribute('id');
-                    }
+                    if (pageYOffset >= (sectionTop - 150)) { current = section.getAttribute('id'); }
                 });
-
                 navLinks.forEach(a => {
                     a.classList.remove('active');
-                    if (a.getAttribute('href').includes(current)) {
-                        a.classList.add('active');
-                    }
+                    if (a.getAttribute('href').includes(current)) { a.classList.add('active'); }
                 });
+            });
+
+            // Ação do Botão Voltar ao Topo
+            document.getElementById("btnTop").addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
     </script>
 </body>
-
 </html>
-
